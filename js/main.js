@@ -99,6 +99,21 @@ const toggleCommentSection = (postId) => {
  *  f. Return the button element
  */
 
+const toggleCommentButton = (postId) => {
+  if (!postId) {
+    return undefined;
+  }
+  let button = null;
+  try {
+    button = document.querySelector(`button[data-post-id=['${postId}']`);
+  } catch (error) {
+    //noop
+  }
+  if (button) {
+    button.textContent === "Show Comments" ? button.textContent = "Hide Comments" : "Show Comments";
+  }
+  return button;
+}
 
 
 /**
