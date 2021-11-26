@@ -165,16 +165,18 @@ const deleteChildElements = (parentElement) => {
 const toggleComments = (event, postId) => {
   return [];
 }
+const handleButtonClick = (event) => {
+  toggleComments(event, this);
+}
+
 const addButtonListeners = () => {
   const mainButtons = document.querySelectorAll("main > button") ?? null;
   if (!mainButtons || !(mainButtons instanceof NodeList)) {
     return undefined;
   }
-  mainButtons.forEach(button => {
+  mainButtons.forEach((button) => {
     const postId = button.dataset.postId;
-    button.addEventListener("click", (event) => {
-      toggleComments(event, postId);
-    });
+    button.addEventListener("click", handleButtonClick.bind(postId));
   });
   return mainButtons;
 }
@@ -190,6 +192,17 @@ const addButtonListeners = () => {
  *  f. Return the button elements which were selected
  */
 
+const removeButtonListeners = () => {
+  const mainButtons = document.querySelectorAll("main > button") ?? null;
+  if (!mainButtons || !(mainButtons instanceof NodeList)) {
+    return undefined;
+  }
+  mainButtons.forEach((button) => {
+    const postId = button.dataset.postId;
+    button.removeEventListener("click", handleButtonClick);
+  });
+  return mainButtons;
+}
 
 
 /**
