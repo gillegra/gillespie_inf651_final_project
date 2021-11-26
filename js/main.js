@@ -162,6 +162,22 @@ const deleteChildElements = (parentElement) => {
  *  i. You may want to define an empty toggleComments function for now. Not all tests will pass for addButtonListeners until toggleComments exists. I recommend waiting on the logic inside the toggleComments function until we get there.
  */
 
+const toggleComments = (event, postId) => {
+  return [];
+}
+const addButtonListeners = () => {
+  const mainButtons = document.querySelectorAll("main > button") ?? null;
+  if (!mainButtons || !(mainButtons instanceof NodeList)) {
+    return undefined;
+  }
+  mainButtons.forEach(button => {
+    const postId = button.dataset.postId;
+    button.addEventListener("click", (event) => {
+      toggleComments(event, postId);
+    });
+  });
+  return mainButtons;
+}
 
 
 /**
