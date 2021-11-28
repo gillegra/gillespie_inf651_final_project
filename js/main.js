@@ -438,6 +438,37 @@ const displayComments = async (postId) => {
  *  t. Return the fragment element
  */
 
+const createPosts = async (posts) => {
+  if (!posts) {
+    return undefined;
+  }
+
+  const fragment = document.createDocumentFragment();
+
+  for (const post of posts) {
+    const button = createElemWithText("button", "Show Comments");
+    button.dataset.postId = post.id;
+    
+    const author = await getUser(post.userId);
+
+    const section = createElemWithText("section", await displayComments(post.id));
+
+    const article = document.createElement("article");
+    article.append(
+      createElemWithText("h2", post.title),
+      createElemWithText("p", post.body),
+      createElemWithText("p", `Post ID: ${post.id}`),
+      createElemWithText("p", `Author: ${author.name} with ${author.company.name}`),
+      createElemWithText("p", author.company.catchPhrase),
+      button,
+      section
+    );
+
+    fragment.append(article);
+  };
+
+  return fragment;
+}
 
 
 /**
