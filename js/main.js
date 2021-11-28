@@ -397,6 +397,21 @@ const getPostComments = async (postId) => {
  *  j. Return the section element
  */
 
+const displayComments = async (postId) => {
+  if (!postId) {
+    return undefined;
+  }
+
+  const section = document.createElement("section");
+  section.dataset.postId = postId;
+  section.classList.add("comments", "hide");
+
+  const comments = getPostComments(postId);
+  const fragment = createComments(await comments);
+
+  section.append(fragment);
+  return section;
+}
 
 
 /**
