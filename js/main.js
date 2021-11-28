@@ -363,6 +363,22 @@ const getUser = async (userId) => {
  *  g. Return the JSON data
  */
 
+const getPostComments = async (postId) => {
+  if (!postId) {
+    return undefined;
+  }
+  
+  let posts;
+
+  try {
+    posts = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
+  } catch (error) {
+    posts = {};
+  }
+
+  return await posts.json();
+}
+
 
 //THE FOLLOWING FUNCTIONS DEPEND ON THOSE ASYNC FUNCTIONS
 
