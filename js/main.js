@@ -221,6 +221,26 @@ const removeButtonListeners = () => {
  *  l. Return the fragment element
  */
 
+const createComments = (comments) => {
+  if (!comments)
+  {
+    return undefined;
+  }
+
+  const docFragment = document.createDocumentFragment();
+
+  comments.forEach((comment) => {
+    const article = document.createElement("article");
+    article.append(
+      createElemWithText("h3", comment.name),
+      createElemWithText("p", comment.body),
+      createElemWithText("p", `From: ${comment.email}`),
+    );
+    docFragment.append(article);
+  });
+
+  return docFragment;
+}
 
 
 /**
