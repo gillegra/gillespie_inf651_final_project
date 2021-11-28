@@ -307,7 +307,6 @@ const getUsers = async () => {
  *  g. Return the JSON data
  */
 
-
 const getUserPosts = async (userId) => {
   if (!userId) {
     return undefined;
@@ -336,6 +335,21 @@ const getUserPosts = async (userId) => {
  *  g. Return the JSON data
  */
 
+const getUser = async (userId) => {
+  if (!userId) {
+    return undefined;
+  }
+  
+  let user;
+
+  try {
+    user = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}/`);
+  } catch (error) {
+    user = {};
+  }
+
+  return await user.json();
+}
 
 
 /**
