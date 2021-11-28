@@ -254,6 +254,21 @@ const createComments = (comments) => {
  *  g. Return the selectMenu element
  */
 
+const populateSelectMenu = (usersData) => {
+  if (!usersData) {
+    return undefined;
+  }
+
+  const menu = document.querySelector("#selectMenu");
+  const options = createSelectOptions(usersData);
+
+  options.forEach((option) => {
+    menu.append(option);
+  });
+
+  return menu;
+}
+
 
 //THE FOLLOWING FUNCTIONS USE ASYNC / AWAIT
 
