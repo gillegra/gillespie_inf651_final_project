@@ -283,7 +283,17 @@ const populateSelectMenu = (usersData) => {
  *  f. Return the JSON data
  */
 
+const getUsers = async () => {
+  let users;
 
+  try {
+    users = await fetch("https://jsonplaceholder.typicode.com/users/");
+  } catch (error) {
+    users = {};
+  }
+
+  return await users.json();
+}
 
 /**
  * getUserPosts
