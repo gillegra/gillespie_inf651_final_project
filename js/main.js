@@ -162,6 +162,7 @@ const deleteChildElements = (parentElement) => {
  *  i. You may want to define an empty toggleComments function for now. Not all tests will pass for addButtonListeners until toggleComments exists. I recommend waiting on the logic inside the toggleComments function until we get there.
  */
 
+//TODO remove this temporary function definition when the real function gets defined
 const toggleComments = (event, postId) => {
   return [];
 }
@@ -484,6 +485,16 @@ const createPosts = async (posts) => {
  *  f. Appends the element to the main element \
  *  g. Returns the element variable
  */
+
+const displayPosts = async (posts) => {
+  //default paragraph: <p class="default-text">Select an Employee to display their posts.</p>
+  const main = document.querySelector("main");
+  const element = (posts) ? 
+    await createPosts(posts) : 
+    createElemWithText("p", "Select an Employee to display their posts.", "default-text");
+  main.append(element);
+  return element;
+}
 
 
 //PROCEDURAL FUNCTIONS
