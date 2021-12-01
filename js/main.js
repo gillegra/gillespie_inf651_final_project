@@ -78,12 +78,16 @@ const toggleCommentSection = (postId) => {
   }
   let section = null;
   try {
-    section = document.querySelector(`section[data-post-id=['${postId}']`);
+    section = document.querySelector(`section[data-post-id="${postId}"]`);
   } catch (error) {
     //noop
   }
   if (section) {
-    section.classList.add("hide");
+    if (section.classList.contains("hide")) {
+      section.classList.remove("hide");
+    } else {
+      section.classList.add("hide");
+    }
   }
   return section;
 }
