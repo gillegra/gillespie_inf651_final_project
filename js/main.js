@@ -452,7 +452,7 @@ const createPosts = async (posts) => {
     
     const author = await getUser(post.userId);
 
-    const section = createElemWithText("section", await displayComments(post.id));
+    const section = await displayComments(post.id);
 
     const article = document.createElement("article");
     article.append(
