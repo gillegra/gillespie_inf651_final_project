@@ -543,6 +543,25 @@ const toggleComments = (event, postId) => {
  *  l. Return an array of the results from the functions called: [removeButtons, main, fragment, addButtons]
  */
 
+const refreshPosts = async (posts) => {
+  if (!posts) {
+    return undefined;
+  }
+
+  const resultRemoveButtonListeners = removeButtonListeners();
+  const resultDeleteChildElements = deleteChildElements();
+  const resultDisplayPosts = await displayPosts(posts);
+  const resultAddButtonListeners = addButtonListeners();
+
+  return [resultRemoveButtonListeners, resultDeleteChildElements, resultDisplayPosts, resultAddButtonListeners];
+}
+/*
+TODO fix final failing test:
+The function refreshPosts should return an array of results with accurate data.AssertionError: expected 3 to equal 2
+    at n.<anonymous> (https://serene-roentgen-345cd7.netlify.app/tests/finalProject.min.js:18:45880)
+    line 1182 in prettified
+    assert.strictEqual(result[3].length, 2)
+*/
 
 
 /**
