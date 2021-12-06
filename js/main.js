@@ -171,7 +171,7 @@ const handleButtonClick = (event) => {
 }
 
 const addButtonListeners = () => {
-  const mainButtons = document.querySelectorAll("main > button") ?? null;
+  const mainButtons = document.querySelectorAll("main button") ?? null;
   if (!mainButtons || !(mainButtons instanceof NodeList)) {
     return undefined;
   }
@@ -194,7 +194,7 @@ const addButtonListeners = () => {
  */
 
 const removeButtonListeners = () => {
-  const mainButtons = document.querySelectorAll("main > button") ?? null;
+  const mainButtons = document.querySelectorAll("main button") ?? null;
   if (!mainButtons || !(mainButtons instanceof NodeList)) {
     return undefined;
   }
