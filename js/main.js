@@ -558,7 +558,7 @@ const refreshPosts = async (posts) => {
 
 
 /**
- * selectMenuChangeEventHandler
+ * selectMenuChangeEventHandler \
  *  a. Dependencies: getUserPosts, refreshPosts \
  *  b. Should be an async function \
  *  c. Automatically receives the event as a parameter (see cheatsheet) \
@@ -570,6 +570,13 @@ const refreshPosts = async (posts) => {
  *  i. Return an array with the userId, posts and the array returned from refreshPosts: [userId, posts, refreshPostsArray]
  */
 
+const selectMenuChangeEventHandler = async (event) => {
+  const userId = event?.target?.value || 1;
+  const posts = await getUserPosts(userId);
+  const postsRefreshed = await refreshPosts(posts);
+
+  return [userId, posts, postsRefreshed];
+}
 
 
 /**
@@ -584,6 +591,13 @@ const refreshPosts = async (posts) => {
  *  h. Return an array with users JSON data from getUsers and the select element result from populateSelectMenu: [users, select]
  */
 
+const initPage = async () => {
+  const users = await getUsers();
+  const menuEl = populateSelectMenu(users);
+
+  return [users, menuEl];
+}
+
 
 
 /**
@@ -596,6 +610,11 @@ const refreshPosts = async (posts) => {
  *  f. NOTE: All of the above needs to be correct for you app to function correctly. However, I can only test if the initApp function exists. It does not return anything.
  */
 
+const initApp = (event) => {
+  const page = initPage();
+  const menu = document.querySelector("#selectMenu");
+  menu.addEventListener("change", selectMenuChangeEventHandler);
+}
 
 
 /***** This must be underneath the definition of initApp in your file.
@@ -604,6 +623,8 @@ const refreshPosts = async (posts) => {
  *  3. Put initApp in the listener as the event handler function. \
  *  4. This will call initApp after the DOM content has loaded and your app will be started.
  */
+
+document.addEventListener("DOMContentLoaded", initApp);
 
 /*
 ^(.\. .+)\n
